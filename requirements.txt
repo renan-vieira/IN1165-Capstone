@@ -1,0 +1,7 @@
+SoundFile
+jupyter
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
