@@ -106,5 +106,6 @@ venv.bak/
 # Ignore .idea/
 .idea/
 
-# Ignore TIMIT database
+# Ignore TIMIT database folders
 TIMIT/
+prepared_TIMIT/
