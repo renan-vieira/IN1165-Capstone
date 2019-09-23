@@ -102,3 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Ignore .idea/
+.idea/
+
+# Ignore TIMIT database
+TIMIT/
