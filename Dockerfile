@@ -11,6 +11,10 @@ ADD . /app
 RUN pip install --upgrade pip
 RUN cat requirements.txt | xargs -n 1 pip3 install
 
+# install libsndfile
+RUN apt-get update
+RUN apt-get install libsndfile1 -y
+
 # Jupyter and Tensorboard ports
 EXPOSE 8888 6006
 
