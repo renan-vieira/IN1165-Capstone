@@ -106,6 +106,10 @@ venv.bak/
 # Ignore .idea/
 .idea/
 
-# Ignore TIMIT database folders
+# Ignore TIMIT and MIT MDSVC database folders
 TIMIT/
 prepared_TIMIT/
+MDSVC/
+
+# Ignore auxiliar file
+missing_train_audios.txt
