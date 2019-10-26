@@ -13,6 +13,7 @@
 import os
 import time
 import soundfile as sf
+import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -228,8 +229,12 @@ for epoch in range(N_epochs):
     loss_sum = 0
     err_sum = 0
 
+    train_losses = []
+    train_error_rates = []
+    val_losses = []
+    val_error_rates = []
     for i in range(N_batches):
-        print(f'BATCH #{i}')
+        print(f'\tBATCH #{i}')
         [inp, lab] = create_batches_rnd(batch_size, data_folder, wav_lst_tr,
                                         snt_tr, wlen, lab_dict, 0.2, split='train', current_batch=i)
         pout = DNN2_net(DNN1_net(CNN_net(inp)))
@@ -256,6 +261,8 @@ for epoch in range(N_epochs):
     end_time = time.time()
     print(f'ELAPSED TIME FOR EPOCH #{epoch}: {(end_time - start_time) / 60.0} min')
 
+    train_losses.append(loss_tot)
+    train_error_rates.append(err_tot)
     # Full Validation  new
     if epoch % N_eval_epoch == 0:
 
@@ -271,9 +278,6 @@ for epoch in range(N_epochs):
 
         with torch.no_grad():
             for i in range(snt_te):
-
-                # [fs,signal]=scipy.io.wavfile.read(data_folder+wav_lst_te[i])
-                # signal=signal.astype(float)/32768
 
                 [signal, fs] = sf.read(data_folder + wav_lst_te[i])
 
@@ -324,6 +328,9 @@ for epoch in range(N_epochs):
         print("epoch %i, loss_tr=%f err_tr=%f loss_te=%f err_te=%f err_te_snt=%f" % (
             epoch, loss_tot, err_tot, loss_tot_dev, err_tot_dev, err_tot_dev_snt))
 
+        val_losses.append(loss_tot_dev)
+        val_error_rates.append(err_tot_dev)
+
         with open(output_folder + "/res.res", "a") as res_file:
             res_file.write("epoch %i, loss_tr=%f err_tr=%f loss_te=%f err_te=%f err_te_snt=%f\n" % (
                 epoch, loss_tot, err_tot, loss_tot_dev, err_tot_dev, err_tot_dev_snt))
@@ -339,3 +346,12 @@ for epoch in range(N_epochs):
 
     else:
         print("epoch %i, loss_tr=%f err_tr=%f" % (epoch, loss_tot, err_tot))
+
+plt.plot(val_losses)
+plt.savefig("val_losses.png")
+plt.plot(val_error_rates)
+plt.savefig("val_error.png")
+plt.plot(train_losses)
+plt.savefig("train_losses.png")
+plt.plot(train_error_rates)
+plt.savefig("val_error.png")
