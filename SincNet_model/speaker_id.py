@@ -234,7 +234,9 @@ for epoch in range(N_epochs):
     val_losses = []
     val_error_rates = []
     for i in range(N_batches):
-        print(f'\tBATCH #{i}')
+        if (i % 100) == 0:
+            print(f'\tBATCH #{i}')
+
         [inp, lab] = create_batches_rnd(batch_size, data_folder, wav_lst_tr,
                                         snt_tr, wlen, lab_dict, 0.2, split='train', current_batch=i)
         pout = DNN2_net(DNN1_net(CNN_net(inp)))
@@ -354,4 +356,4 @@ plt.savefig("val_error.png")
 plt.plot(train_losses)
 plt.savefig("train_losses.png")
 plt.plot(train_error_rates)
-plt.savefig("val_error.png")
+plt.savefig("train_error.png")
