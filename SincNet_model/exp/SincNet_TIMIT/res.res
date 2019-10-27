@@ -44,3 +44,14 @@ epoch 336, loss_tr=0.033228 err_tr=0.010166 loss_te=4.030224 err_te=0.410034 err
 epoch 344, loss_tr=0.033313 err_tr=0.010166 loss_te=4.402949 err_te=0.428691 err_te_snt=0.009380
 epoch 352, loss_tr=0.031828 err_tr=0.009238 loss_te=4.080747 err_te=0.414066 err_te_snt=0.006494
 epoch 360, loss_tr=0.033095 err_tr=0.009600 loss_te=4.254683 err_te=0.419954 err_te_snt=0.005772
+epoch 0, loss_tr=5.963656 err_tr=0.993603 loss_te=5.399538 err_te=0.983665 err_te_snt=0.958874
+epoch 8, loss_tr=2.389711 err_tr=0.568369 loss_te=3.573247 err_te=0.735538 err_te_snt=0.169553
+epoch 16, loss_tr=1.317390 err_tr=0.332588 loss_te=3.102000 err_te=0.622803 err_te_snt=0.036075
+epoch 0, loss_tr=6.019411 err_tr=0.995049 loss_te=5.553432 err_te=0.990104 err_te_snt=0.977633
+epoch 0, loss_tr=5.956820 err_tr=0.992803 loss_te=5.362595 err_te=0.981096 err_te_snt=0.945166
+epoch 0, loss_tr=5.984925 err_tr=0.993838 loss_te=5.428883 err_te=0.984899 err_te_snt=0.956710
+epoch 0, loss_tr=5.998488 err_tr=0.993838 loss_te=5.373043 err_te=0.980856 err_te_snt=0.950938
+epoch 1, loss_tr=4.969776 err_tr=0.960928 loss_te=4.888753 err_te=0.952591 err_te_snt=0.830447
+epoch 2, loss_tr=4.435476 err_tr=0.912764 loss_te=4.630445 err_te=0.922102 err_te_snt=0.690476
+epoch 3, loss_tr=3.975831 err_tr=0.856680 loss_te=4.179143 err_te=0.874965 err_te_snt=0.448052
+epoch 4, loss_tr=3.588330 err_tr=0.796846 loss_te=3.950608 err_te=0.837938 err_te_snt=0.287879
