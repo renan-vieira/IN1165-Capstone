@@ -1,10 +1,10 @@
 # speaker_id.py
-# Mirco Ravanelli 
-# Mila - University of Montreal 
+# Mirco Ravanelli
+# Mila - University of Montreal
 
 # July 2018
 
-# Description: 
+# Description:
 # This code performs a speaker_id experiments with SincNet.
 
 # How to run it:
@@ -23,6 +23,8 @@ import numpy as np
 from dnn_models import MLP, flip
 from dnn_models import SincNet as CNN
 from data_io import ReadList, read_conf, str_to_bool
+import seaborn as sns
+sns.set()
 
 
 def create_batches_rnd(batch_size, data_folder, wav_lst, N_snt, wlen, lab_dict,
@@ -349,11 +351,25 @@ for epoch in range(N_epochs):
     else:
         print("epoch %i, loss_tr=%f err_tr=%f" % (epoch, loss_tot, err_tot))
 
-plt.plot(val_losses)
-plt.savefig("val_losses.png")
-plt.plot(val_error_rates)
-plt.savefig("val_error.png")
-plt.plot(train_losses)
-plt.savefig("train_losses.png")
-plt.plot(train_error_rates)
-plt.savefig("train_error.png")
+# Train
+plt.plot(train_losses,color='blue',linewidth=1)
+plt.xlabel("# Epochs")
+plt.ylabel("Loss")
+plt.title("Loss - Training Set")
+
+plt.plot(train_error_rates, color = 'red', linewidth=1)
+plt.xlabel("# Epochs")
+plt.ylabel("Error")
+plt.title("Error - Training Set")
+
+#Validation
+plt.plot(val_losses,color='blue',linewidth=1)
+plt.xlabel("# Epochs")
+plt.ylabel("Loss")
+plt.title("Loss - Validations Set")
+
+plt.plot(val_error_rates, color='red', linewidth=1)
+plt.xlabel("# Epochs")
+plt.ylabel("Error")
+plt.title("Error - Validations Set")
+
