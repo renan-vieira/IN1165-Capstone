@@ -1,10 +1,10 @@
 # speaker_id.py
-# Mirco Ravanelli 
-# Mila - University of Montreal 
+# Mirco Ravanelli
+# Mila - University of Montreal
 
 # July 2018
 
-# Description: 
+# Description:
 # This code performs a speaker_id experiments with SincNet.
 
 # How to run it:
@@ -23,6 +23,8 @@ import numpy as np
 from dnn_models import MLP, flip
 from dnn_models import SincNet as CNN
 from data_io import ReadList, read_conf, str_to_bool
+import seaborn as sns
+sns.set()
 
 
 def create_batches_rnd(batch_size, data_folder, wav_lst, N_snt, wlen, lab_dict,
@@ -233,6 +235,8 @@ for epoch in range(N_epochs):
     train_error_rates = []
     val_losses = []
     val_error_rates = []
+
+
     for i in range(N_batches):
         if (i % 100) == 0:
             print(f'\tBATCH #{i}')
@@ -263,8 +267,15 @@ for epoch in range(N_epochs):
     end_time = time.time()
     print(f'ELAPSED TIME FOR EPOCH #{epoch}: {(end_time - start_time) / 60.0} min')
 
+
+    #######################################
     train_losses.append(loss_tot)
     train_error_rates.append(err_tot)
+    print(train_losses,train_error_rates)
+    ########################################
+
+
+
     # Full Validation  new
     if epoch % N_eval_epoch == 0:
 
@@ -330,8 +341,11 @@ for epoch in range(N_epochs):
         print("epoch %i, loss_tr=%f err_tr=%f loss_te=%f err_te=%f err_te_snt=%f" % (
             epoch, loss_tot, err_tot, loss_tot_dev, err_tot_dev, err_tot_dev_snt))
 
+        ################################################################################
         val_losses.append(loss_tot_dev)
         val_error_rates.append(err_tot_dev)
+        print(val_losses,val_error_rates)
+        ################################################################################
 
         with open(output_folder + "/res.res", "a") as res_file:
             res_file.write("epoch %i, loss_tr=%f err_tr=%f loss_te=%f err_te=%f err_te_snt=%f\n" % (
@@ -349,11 +363,24 @@ for epoch in range(N_epochs):
     else:
         print("epoch %i, loss_tr=%f err_tr=%f" % (epoch, loss_tot, err_tot))
 
-plt.plot(val_losses)
-plt.savefig("val_losses.png")
-plt.plot(val_error_rates)
-plt.savefig("val_error.png")
-plt.plot(train_losses)
-plt.savefig("train_losses.png")
-plt.plot(train_error_rates)
-plt.savefig("train_error.png")
+# Train
+plt.plot(train_losses,color='blue',linewidth=1)
+plt.xlabel("# Epochs")
+plt.ylabel("Loss")
+plt.title("Loss - Training Set")
+
+plt.plot(train_error_rates, color = 'red', linewidth=1)
+plt.xlabel("# Epochs")
+plt.ylabel("Error")
+plt.title("Error - Training Set")
+
+#Validation
+plt.plot(val_losses,color='blue',linewidth=1)
+plt.xlabel("# Epochs")
+plt.ylabel("Loss")
+plt.title("Loss - Validations Set")
+
+plt.plot(val_error_rates, color='red', linewidth=1)
+plt.xlabel("# Epochs")
+plt.ylabel("Error")
+plt.title("Error - Validations Set")
