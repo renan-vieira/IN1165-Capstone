@@ -235,6 +235,8 @@ for epoch in range(N_epochs):
     train_error_rates = []
     val_losses = []
     val_error_rates = []
+
+
     for i in range(N_batches):
         if (i % 100) == 0:
             print(f'\tBATCH #{i}')
@@ -265,8 +267,15 @@ for epoch in range(N_epochs):
     end_time = time.time()
     print(f'ELAPSED TIME FOR EPOCH #{epoch}: {(end_time - start_time) / 60.0} min')
 
+
+    #######################################
     train_losses.append(loss_tot)
     train_error_rates.append(err_tot)
+    print(train_losses,train_error_rates)
+    ########################################
+
+
+
     # Full Validation  new
     if epoch % N_eval_epoch == 0:
 
@@ -332,8 +341,11 @@ for epoch in range(N_epochs):
         print("epoch %i, loss_tr=%f err_tr=%f loss_te=%f err_te=%f err_te_snt=%f" % (
             epoch, loss_tot, err_tot, loss_tot_dev, err_tot_dev, err_tot_dev_snt))
 
+        ################################################################################
         val_losses.append(loss_tot_dev)
         val_error_rates.append(err_tot_dev)
+        print(val_losses,val_error_rates)
+        ################################################################################
 
         with open(output_folder + "/res.res", "a") as res_file:
             res_file.write("epoch %i, loss_tr=%f err_tr=%f loss_te=%f err_te=%f err_te_snt=%f\n" % (
@@ -372,4 +384,3 @@ plt.plot(val_error_rates, color='red', linewidth=1)
 plt.xlabel("# Epochs")
 plt.ylabel("Error")
 plt.title("Error - Validations Set")
-
