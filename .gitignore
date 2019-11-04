@@ -113,3 +113,6 @@ MDSVC/
 
 # Ignore auxiliar file
 missing_train_audios.txt
+nohup.out
+training_log.txt
+
