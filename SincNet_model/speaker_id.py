@@ -218,6 +218,10 @@ optimizer_CNN = optim.RMSprop(CNN_net.parameters(), lr=lr, alpha=0.95, eps=1e-8)
 optimizer_DNN1 = optim.RMSprop(DNN1_net.parameters(), lr=lr, alpha=0.95, eps=1e-8)
 optimizer_DNN2 = optim.RMSprop(DNN2_net.parameters(), lr=lr, alpha=0.95, eps=1e-8)
 
+train_losses=[]
+train_error_rates = []
+val_losses =[]
+val_error_rates=[]
 for epoch in range(N_epochs):
 
     print(f'EPOCH #{epoch}')
@@ -231,10 +235,10 @@ for epoch in range(N_epochs):
     loss_sum = 0
     err_sum = 0
 
-    train_losses = []
-    train_error_rates = []
-    val_losses = []
-    val_error_rates = []
+    #train_losses = []
+    #train_error_rates = []
+    #val_losses = []
+    #val_error_rates = []
 
 
     for i in range(N_batches):
@@ -269,8 +273,8 @@ for epoch in range(N_epochs):
 
 
     #######################################
-    train_losses.append(loss_tot)
-    train_error_rates.append(err_tot)
+    train_losses.append(loss_tot.item())
+    train_error_rates.append(err_tot.item())
     print(train_losses,train_error_rates)
     ########################################
 
@@ -342,8 +346,8 @@ for epoch in range(N_epochs):
             epoch, loss_tot, err_tot, loss_tot_dev, err_tot_dev, err_tot_dev_snt))
 
         ################################################################################
-        val_losses.append(loss_tot_dev)
-        val_error_rates.append(err_tot_dev)
+        val_losses.append(loss_tot_dev.item())
+        val_error_rates.append(err_tot_dev.item())
         print(val_losses,val_error_rates)
         ################################################################################
 
@@ -356,6 +360,7 @@ for epoch in range(N_epochs):
                       'DNN2_model_par': DNN2_net.state_dict(),
                       }
         torch.save(checkpoint, output_folder + '/model_raw.pkl')
+        torch.save(checkpoint, output_folder + '/model_raw.onnx')
 
         end_time = time.time()
         print(f'EVALUATION ELAPSED TIME: {(start_time - end_time) / 60.0}')
