@@ -1,3 +1,4 @@
+
 # speaker_id.py
 # Mirco Ravanelli
 # Mila - University of Montreal
@@ -368,24 +369,20 @@ for epoch in range(N_epochs):
     else:
         print("epoch %i, loss_tr=%f err_tr=%f" % (epoch, loss_tot, err_tot))
 
-# Train
+# Loss line
+plt.figure(0)
 plt.plot(train_losses,color='blue',linewidth=1)
+plt.plot(val_losses, color='red', linewidth=1)
 plt.xlabel("# Epochs")
 plt.ylabel("Loss")
-plt.title("Loss - Training Set")
+plt.legend(['training set', 'validation set'])
+plt.savefig('losses.png')
 
+# Error line
+plt.figure(1)
 plt.plot(train_error_rates, color = 'red', linewidth=1)
+plt.plot(val_error_rates, color='blue', linewidth=1)
 plt.xlabel("# Epochs")
 plt.ylabel("Error")
-plt.title("Error - Training Set")
-
-#Validation
-plt.plot(val_losses,color='blue',linewidth=1)
-plt.xlabel("# Epochs")
-plt.ylabel("Loss")
-plt.title("Loss - Validations Set")
-
-plt.plot(val_error_rates, color='red', linewidth=1)
-plt.xlabel("# Epochs")
-plt.ylabel("Error")
-plt.title("Error - Validations Set")
+plt.legend(['training set', 'validation set'])
+plt.savefig('error_rates.png')

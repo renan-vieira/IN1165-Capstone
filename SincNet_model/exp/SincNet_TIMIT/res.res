@@ -74,3 +74,4 @@ epoch 8, loss_tr=2.427582 err_tr=0.580010 loss_te=3.341102 err_te=0.717206 err_t
 epoch 9, loss_tr=2.244298 err_tr=0.541084 loss_te=3.351239 err_te=0.709928 err_te_snt=0.093074
 epoch 10, loss_tr=2.080594 err_tr=0.504746 loss_te=3.133732 err_te=0.673369 err_te_snt=0.056277
 epoch 11, loss_tr=1.911843 err_tr=0.469141 loss_te=3.309266 err_te=0.689465 err_te_snt=0.073593
+epoch 0, loss_tr=6.045494 err_tr=0.994980 loss_te=5.570052 err_te=0.990293 err_te_snt=0.981963
